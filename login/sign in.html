@@ -1,0 +1,71 @@
+<?php
+// Include the database connection file
+include "../conn.php";
+
+// Function to sanitize input data
+function sanitize_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+// Signup Process
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])) {
+    $username = sanitize_input($_POST["username"]);
+    $password = sanitize_input($_POST["password"]);
+
+    // Hash the password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    try {
+        // Check if the username already exists
+        $stmt = $conn->prepare("SELECT * FROM user WHERE Username = :username");
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            $error_message = "Username sudah digunakan. Silakan gunakan username lain.";
+        } else {
+            // Insert user data into the database
+            $stmt = $conn->prepare("INSERT INTO user (Username, Password) VALUES (:username, :password)");
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':password', $hashed_password);
+            $stmt->execute();
+
+            // Redirect to login page after successful signup
+            header("Location: login.php");
+            exit(); // Stop further execution
+        }
+    } catch (PDOException $e) {
+        $error_message = "Error: " . $e->getMessage();
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Signup</title>
+</head>
+
+<body>
+    <h2>User Signup</h2>
+    <?php if (isset($error_message)) { ?>
+    <div style="color: red;"><?php echo $error_message; ?></div>
+    <?php } ?>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" name="signup" value="Sign Up">
+    </form>
+</body>
+
+</html>
