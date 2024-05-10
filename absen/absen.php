@@ -1,4 +1,4 @@
-        <?php
+<?php
 session_start(); // Start the session if not already started
 
 // Include the database connection file
@@ -40,13 +40,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         // Check if image file is a actual image or fake image
         $check = getimagesize($_FILES["foto"]["tmp_name"]);
         if ($check !== false) {
-            $exif = exif_read_data($_FILES["foto"]["tmp_name"], 'ANY_TAG', true);
-            if (isset($exif['IFD0']['Make'])) {
-                // Check if the image was taken by a camera
-                echo "File is taken by a camera.";
-                $uploadOk = 1;
-            } else {
-                echo "File is not taken by a camera.";
+            // Allow only specific image file formats
+            if (
+                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif"
+            ) {
+                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                 $uploadOk = 0;
             }
         } else {
@@ -57,15 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         // Check file size
         if ($_FILES["foto"]["size"] > 500000) {
             echo "Sorry, your file is too large.";
-            $uploadOk = 0;
-        }
-
-        // Allow certain file formats
-        if (
-            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-            && $imageFileType != "gif"
-        ) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;
         }
 
@@ -80,6 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                 echo "Sorry, there was an error uploading your file.";
             }
         }
+    } else {
+        echo "No file uploaded.";
     }
 
     // Insert absen data into the database
@@ -101,40 +93,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 }
 ?>
 
-        <!DOCTYPE html>
-        <html lang="en">
 
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Absen</title>
-        </head>
+<!DOCTYPE html>
+<html lang="en">
 
-        <body>
-            <h2>Absen</h2>
-            <form id="absenForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" e
-                nctype="multipart/form-data">
-                <label for="nama">Nama:</label><br>
-                <input type="text" id="nama" name="nama" required><br><br>
-                <label for="keterangan">Keterangan:</label><br>
-                <input type="text" id="keterangan" name="keterangan"><br><br>
-                <label for="foto">Foto:</label><br>
-                <input type="file" id="foto" name="foto" accept="image/*" capture="camera" required><br><br>
-                <input type="submit" name="submit" value="Submit">
-            </form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absen</title>
+</head>
 
-            <script>
-            document.getElementById("absenForm").addEventListener("submit", function(event) {
-                var fileInput = document.getElementById("foto");
-                // Check if a file is selected
-                if (fileInput.files.length > 0) {
-                    // Prevent form submission
-                    event.preventDefault();
-                    // Inform the user that file uploads are not allowed
-                    alert("File uploads are not allowed. Please capture an image from the camera.");
-                }
-            });
-            </script>
-        </body>
+<body>
+    <h2>Absen</h2>
+    <form id="absenForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+        enctype="multipart/form-data">
+        <label for="nama">Nama:</label><br>
+        <input type="text" id="nama" name="nama" required><br><br>
+        <label for="keterangan">Keterangan:</label><br>
+        <input type="text" id="keterangan" name="keterangan"><br><br>
+        <label for="foto">Foto:</label><br>
+        <input type="file" id="foto" name="foto" accept="image/*" required><br><br>
+        <input type="submit" name="submit" value="Submit">
+    </form>
 
-        </html>
+    <script>
+    document.getElementById("absenForm").addEventListener("submit", function(event) {
+        var fileInput = document.getElementById("foto");
+        // Check if a file is selected
+        if (fileInput.files.length === 0) {
+            // Prevent form submission
+            event.preventDefault();
+            // Inform the user that they need to select a file
+            alert("Please select a file.");
+        }
+    });
+    </script>
+</body>
+
+</html>
