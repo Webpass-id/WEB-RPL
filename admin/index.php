@@ -29,9 +29,7 @@ if (!isset($_SESSION["admin"])) {
 </head>
 
 <body>
-    <?php 
-include_once ".php";
-?>
+
 </body>
 
 </html

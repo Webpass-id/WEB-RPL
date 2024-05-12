@@ -25,12 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     $nama = sanitize_input($_POST["nama"]);
     $keterangan = sanitize_input($_POST["keterangan"]);
 
-    // Set tanggal dan waktu otomatis
+    // Set tanggal otomatis
     $tanggal = date('Y-m-d');
+
+    // Set waktu otomatis
     $jam_masuk = date('H:i:s');
 
     // Proses upload foto
-    $target_dir = "../admin/uploads/";
+    $target_dir = "../admin/uplwoads/";
     $target_file = $target_dir . basename($_FILES["foto"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
