@@ -17,7 +17,7 @@ if (!isset($_SESSION["admin"])) {
     header("Location: login.php"); // Redirect to login page if not logged in
     exit();
 }
-
+include "../boots.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,11 +25,11 @@ if (!isset($_SESSION["admin"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin</title>
 </head>
 
 <body>
-
+    <?php include "components/nav.php"; ?>
 </body>
 
 </html
