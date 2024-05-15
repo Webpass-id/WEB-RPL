@@ -6,6 +6,7 @@
 </head>
 
 <body>
+    <?php include "../components/nav.php"; ?>
     <h2>CRUD Mata Pelajaran</h2>
 
     <!-- Formulir untuk menambah atau mengedit mata pelajaran -->
@@ -36,8 +37,8 @@
         </tr>
         <?php
         // Koneksi ke database
-        include "../conn.php";
-
+        include "../../conn.php";
+        include "../../boots.php";
         // Ambil data mata pelajaran dari database
         $sql = "SELECT * FROM MataPelajaran";
         $result = $conn->query($sql);

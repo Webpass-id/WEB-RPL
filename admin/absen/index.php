@@ -1,5 +1,6 @@
 <?php
-include "../conn.php";
+include "../../conn.php";
+include "../../boots.php";
 session_start();
 if (!isset($_SESSION["admin"])) {
     header("Location: login.php"); // Redirect to login page if not logged in
@@ -104,6 +105,7 @@ try {
 </head>
 
 <body>
+    <?php include "../components/nav.php"; ?>
     <h2>Attendance Data</h2>
     <?php if (!empty($attendanceData)): ?>
     <div class="table-responsive">

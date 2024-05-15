@@ -22,7 +22,7 @@ try {
 </head>
 
 <body>
-
+    <?php include "../components/nav.php"; ?>
     <h2>Data Murid</h2>
 
     <?php if (isset($error)): ?>
