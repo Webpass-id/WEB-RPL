@@ -14,6 +14,10 @@ function sanitize_input($data)
     return $data;
 }
 
+// Initialize variables to store error messages
+$signup_error = "";
+$signup_success = "";
+
 // Process Form Submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["login"])) {
@@ -62,27 +66,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $count = $stmt->fetchColumn();
 
             if ($count > 0) {
-                // Redirect to signup page with error message
-                echo "dupe bang";
-                exit();
+                // Set error message for duplicate entry
+                $signup_error = "Username or NISN already exists. Please use a different one.";
+            } else {
+                // Insert the username, password, and NISN into the database
+                $stmt = $conn->prepare("INSERT INTO user (Username, Password, nisn) VALUES (:username, :password, :nisn)");
+                $stmt->bindParam(':username', $username);
+                $stmt->bindParam(':password', $password);
+                $stmt->bindParam(':nisn', $nisn);
+                $stmt->execute();
+
+                // Set success message
+                $signup_success = "Signup berhasil! Silahkan login.";
             }
-
-            // Insert the username, password, and NISN into the database
-            $stmt = $conn->prepare("INSERT INTO user (Username, Password, nisn) VALUES (:username, :password, :nisn)");
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':password', $password);
-            $stmt->bindParam(':nisn', $nisn);
-            $stmt->execute();
-
-            echo "<script>alert('Signup berhasil! Silahkan login.'); window.location.href='login.php';</script>";
-            exit(); // Stop further execution
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            $signup_error = "Error: " . $e->getMessage();
         }
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,26 +92,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login & Signup</title>
-    <link rel="stylesheet" href="path_to_bootstrap.css"> <!-- Adjust the path accordingly -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Adjust the path accordingly -->
 </head>
 
 <body>
-    <?php if (isset($_GET['error']) && $_GET['error'] == 'duplicate'): ?>
-    <div class="alert alert-danger">Username or NISN already exists. Please use a different one.</div>
-    <?php elseif (isset($_GET['success'])): ?>
-    <div class="alert alert-success">Signup successful!</div>
-    <?php endif; ?>
+    <div class="container mt-4">
+        <?php if (!empty($signup_error)): ?>
+        <div class="alert alert-danger" role="alert">
+            <?php echo $signup_error; ?>
+        </div>
+        <?php elseif (!empty($signup_success)): ?>
+        <div class="alert alert-success" role="alert">
+            <?php echo $signup_success; ?>
+        </div>
+        <?php endif; ?>
 
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <h3>Signup</h3>
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <label for="nisn">NISN:</label><br>
-        <input type="text" id="nisn" name="nisn" required><br><br>
-        <input type="submit" name="signup" value="Signup">
-    </form>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <h3>Signup</h3>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="nisn">NISN:</label>
+                <input type="text" id="nisn" name="nisn" class="form-control" required>
+            </div>
+            <button type="submit" name="signup" class="btn btn-primary">Signup</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
