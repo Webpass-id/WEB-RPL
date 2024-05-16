@@ -3,7 +3,7 @@ include "../../conn.php";
 include "../../boots.php";
 session_start();
 if (!isset($_SESSION["admin"])) {
-    header("Location: login.php"); // Redirect to login page if not logged in
+    header("Location: ../login.php"); // Redirect to login page if not logged in
     exit();
 }
 
@@ -111,9 +111,7 @@ try {
     <div class="table-responsive">
         <table>
             <tr>
-                <th>ID</th>
                 <th>Nama</th>
-                <th>Tanggal</th>
                 <th>Jam Masuk</th>
                 <th>Keterangan</th>
                 <th>Foto</th>
@@ -122,10 +120,8 @@ try {
             </tr>
             <?php foreach ($attendanceData as $row): ?>
             <tr>
-                <td><?php echo $row["ID"]; ?></td>
                 <td><?php echo $row["Nama"]; ?></td>
-                <td><?php echo $row["Tanggal"]; ?></td>
-                <td><?php echo $row["JamMasuk"]; ?></td>
+                <td><?php echo $row["JamMasuk"]; ?> <?php echo $row["Tanggal"]; ?></td>
                 <td><?php echo $row["Keterangan"]; ?></td>
                 <td><img src="<?php echo $row["Foto"]; ?>" alt="Foto" style="max-width: 100px; height: auto;"></td>
                 <td><?php echo $row["Username"]; ?></td>

@@ -106,6 +106,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 </head>
 
 <body>
+    <?php 
+    include "../components/nav.php";
+    include "../../boots.php";
+    ?>
     <h2>Absen</h2>
     <form id="absenForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
         enctype="multipart/form-data">

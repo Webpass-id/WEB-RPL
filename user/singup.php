@@ -54,6 +54,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nisn = sanitize_input($_POST["nisn"]);
 
         try {
+            // Check if the username or NISN already exists
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM user WHERE Username = :username OR nisn = :nisn");
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':nisn', $nisn);
+            $stmt->execute();
+            $count = $stmt->fetchColumn();
+
+            if ($count > 0) {
+                // Redirect to signup page with error message
+                echo "dupe bang";
+                exit();
+            }
+
             // Insert the username, password, and NISN into the database
             $stmt = $conn->prepare("INSERT INTO user (Username, Password, nisn) VALUES (:username, :password, :nisn)");
             $stmt->bindParam(':username', $username);
@@ -77,9 +90,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login & Signup</title>
+    <link rel="stylesheet" href="path_to_bootstrap.css"> <!-- Adjust the path accordingly -->
 </head>
 
 <body>
+    <?php if (isset($_GET['error']) && $_GET['error'] == 'duplicate'): ?>
+    <div class="alert alert-danger">Username or NISN already exists. Please use a different one.</div>
+    <?php elseif (isset($_GET['success'])): ?>
+    <div class="alert alert-success">Signup successful!</div>
+    <?php endif; ?>
+
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <h3>Signup</h3>
         <label for="username">Username:</label><br>
