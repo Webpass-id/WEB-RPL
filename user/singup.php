@@ -77,7 +77,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->execute();
 
                 // Set success message
-                $signup_success = "Signup berhasil! Silahkan login.";
+               $_SESSION["signup_success"] = "Signup berhasil! Silahkan login.";
+                header("Location: index.php");
+                exit(); // Stop further execution
             }
         } catch (PDOException $e) {
             $signup_error = "Error: " . $e->getMessage();
