@@ -1,7 +1,8 @@
 <?php
 // Start session
 session_start();    
-
+include "../conn.php";
+include "../boots.php";
 // Check if user is not logged in, then redirect to login page
 if (!isset($_SESSION['user'])) {
     header("Location: login.php");
@@ -18,6 +19,9 @@ if (!isset($_SESSION['user'])) {
 </head>
 
 <body>
+    <?php 
+include "components/nav.php";
+?>
     <h1>Welcome <?php echo $_SESSION['user'];  ?></h1>
     <H1>jadwal mata pelajaran</H1>
 

@@ -2,7 +2,7 @@
 session_start(); // Start the session if not already started
 
 // Include the database connection file
-include "../conn.php";
+include "../../conn.php";
 
 // Function to sanitize input data
 function sanitize_input($data)
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     $jam_masuk = date('H:i:s');
 
     // Proses upload foto
-    $target_dir = "../admin/uplwoads/";
+    $target_dir = "../../admin/uploads/";
     $target_file = $target_dir . basename($_FILES["foto"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         }
 
         // Check file size
-        if ($_FILES["foto"]["size"] > 500000) {
+        if ($_FILES["foto"]["size"] > 5000000000000000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }

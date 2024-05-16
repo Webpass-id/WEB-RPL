@@ -67,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
         <input type="password" id="password" name="password" required><br><br>
         <input type="submit" name="login" value="Login">
     </form>
+    <a href="singup.php">a</a>
 </body>
 
 </html>
