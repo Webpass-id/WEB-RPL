@@ -30,6 +30,7 @@ include "../boots.php";
 
 <body>
     <?php include "components/nav.php"; ?>
+    <H1>Jadwal piket</H1>
 </body>
 
 </html
