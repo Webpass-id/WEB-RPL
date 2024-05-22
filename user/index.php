@@ -135,37 +135,39 @@ foreach ($days as $day) {
             </div>
         </div>
     </div>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card" style="width: 100%;">
-                    <img src="https://thumbs.dreamstime.com/z/kalender-bulan-januari-lengkap-dengan-hari-libur-indonesia-nasional-weton-dan-tanggalan-hijriah-memudahkan-kalian-dalam-mengetahui-264490069.jpg"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
+    <div>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card" style="width: 100%;">
+                        <img src="https://thumbs.dreamstime.com/z/kalender-bulan-januari-lengkap-dengan-hari-libur-indonesia-nasional-weton-dan-tanggalan-hijriah-memudahkan-kalian-dalam-mengetahui-264490069.jpg"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="width: 100%;">
-                    <img src="https://thumbs.dreamstime.com/z/kalender-bulan-januari-lengkap-dengan-hari-libur-indonesia-nasional-weton-dan-tanggalan-hijriah-memudahkan-kalian-dalam-mengetahui-264490069.jpg"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
+                <div class="col-md-3">
+                    <div class="card" style="width: 100%;">
+                        <img src="https://thumbs.dreamstime.com/z/kalender-bulan-januari-lengkap-dengan-hari-libur-indonesia-nasional-weton-dan-tanggalan-hijriah-memudahkan-kalian-dalam-mengetahui-264490069.jpg"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="width: 100%;">
-                    <img src="https://thumbs.dreamstime.com/z/kalender-bulan-januari-lengkap-dengan-hari-libur-indonesia-nasional-weton-dan-tanggalan-hijriah-memudahkan-kalian-dalam-mengetahui-264490069.jpg"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
+                <div class="col-md-3">
+                    <div class="card" style="width: 100%;">
+                        <img src="https://thumbs.dreamstime.com/z/kalender-bulan-januari-lengkap-dengan-hari-libur-indonesia-nasional-weton-dan-tanggalan-hijriah-memudahkan-kalian-dalam-mengetahui-264490069.jpg"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="width: 100%;">
-                    <img src="https://thumbs.dreamstime.com/z/kalender-bulan-januari-lengkap-dengan-hari-libur-indonesia-nasional-weton-dan-tanggalan-hijriah-memudahkan-kalian-dalam-mengetahui-264490069.jpg"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
+                <div class="col-md-3">
+                    <div class="card" style="width: 100%;">
+                        <img src="https://thumbs.dreamstime.com/z/kalender-bulan-januari-lengkap-dengan-hari-libur-indonesia-nasional-weton-dan-tanggalan-hijriah-memudahkan-kalian-dalam-mengetahui-264490069.jpg"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+                        </div>
                     </div>
                 </div>
             </div>

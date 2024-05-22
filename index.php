@@ -65,7 +65,7 @@
                 <a href="courses.html" class="nav-item nav-link">Student</a>
             </div>
             <div class="buttonlogin">
-                <a href="absen" class="btn py-4 px-lg-5 d-none d-lg-block"><i class="user bx bx-user-circle"
+                <a href="user" class="btn py-4 px-lg-5 d-none d-lg-block"><i class="user bx bx-user-circle"
                         style="font-size: 35px"></i></a>
             </div>
         </div>

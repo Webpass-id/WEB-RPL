@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
     // Check if file was uploaded successfully
     if (!empty($_FILES["foto"]["tmp_name"])) {
-        // Check if image file is a actual image or fake image
+        // Check if image file is an actual image or fake image
         $check = getimagesize($_FILES["foto"]["tmp_name"]);
         if ($check !== false) {
             // Allow only specific image file formats
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         }
 
         // Check file size
-        if ($_FILES["foto"]["size"] > 5000000000000000) {
+        if ($_FILES["foto"]["size"] > 500000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }
@@ -79,22 +79,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     // Insert absen data into the database
     try {
         $username = $_SESSION["user"]; // Get the username from the session
-        $stmt = $conn->prepare("INSERT INTO absen (Nama, Tanggal, JamMasuk, Keterangan, Foto, Username) VALUES (:nama, :tanggal, :jam_masuk, :keterangan, :foto, :username)");
-        $stmt->bindParam(':nama', $nama);
-        $stmt->bindParam(':tanggal', $tanggal);
-        $stmt->bindParam(':jam_masuk', $jam_masuk);
-        $stmt->bindParam(':keterangan', $keterangan);
-        $stmt->bindParam(':foto', $target_file);
+        
+        // Get nisn from the user table based on the username
+        $stmt = $conn->prepare("SELECT nisn FROM user WHERE Username = :username");
         $stmt->bindParam(':username', $username);
         $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        echo "<script>alert('Absen berhasil!');</script>";
+        if ($result) {
+            $nisn = $result['nisn'];
+
+            $stmt = $conn->prepare("INSERT INTO absen (Nama, Tanggal, JamMasuk, Keterangan, Foto, Username, nisn) VALUES (:nama, :tanggal, :jam_masuk, :keterangan, :foto, :username, :nisn)");
+            $stmt->bindParam(':nama', $nama);
+            $stmt->bindParam(':tanggal', $tanggal);
+            $stmt->bindParam(':jam_masuk', $jam_masuk);
+            $stmt->bindParam(':keterangan', $keterangan);
+            $stmt->bindParam(':foto', $target_file);
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':nisn', $nisn);
+            $stmt->execute();
+
+            echo "<script>alert('Absen berhasil!');</script>";
+        } else {
+            echo "Error: nisn not found for the current user.";
+        }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

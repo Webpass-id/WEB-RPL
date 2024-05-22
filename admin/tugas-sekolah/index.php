@@ -19,6 +19,9 @@ if (!isset($_SESSION["admin"])) {
 </head>
 
 <body>
+    <?php 
+    include "../components/nav.php";
+    ?>
     <div class="container">
         <h2>Create New Task</h2>
         <form action="update.php" method="post">
