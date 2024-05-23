@@ -23,13 +23,16 @@ include "../boots.php";
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
+   
 </head>
 
 <body>
     <?php include "components/nav.php"; ?>
+    <h1>hallo <?php echo ($_SESSION['admin']) ?></h1>
     <H1>Jadwal piket</H1>
 </body>
 

@@ -1,0 +1,82 @@
+/* Reset some basic elements for better consistency across browsers */
+body, h2, form, label, input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8; /* Light blue pastel background */
+    color: #333; /* Dark grey text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container for the login form */
+.login-container {
+    background-color: #ffffff; /* White background for form */
+    border: 1px solid #d1d5db; /* Light grey border */
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Header styles */
+h2 {
+    margin-bottom: 20px;
+    color: #3b82f6; /* Blue color for the header */
+}
+
+/* Label styles */
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #374151; /* Grey color for labels */
+    text-align: left; /* Align text to the left for labels */
+}
+
+/* Input field styles */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #d1d5db; /* Light grey border */
+    border-radius: 4px;
+    background-color: #f9fafb; /* Very light grey background for input fields */
+}
+
+/* Submit button styles */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #3b82f6; /* Blue background for the button */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Submit button hover effect */
+input[type="submit"]:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .login-container {
+        padding: 15px;
+    }
+
+    input[type="text"], input[type="password"], input[type="submit"] {
+        padding: 8px;
+    }
+}
