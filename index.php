@@ -65,7 +65,7 @@
                 <a href="courses.html" class="nav-item nav-link">Student</a>
             </div>
             <div class="buttonlogin">
-                <a href="user/index.php" class="btn py-4 px-lg-5 d-none d-lg-block"><i class="user bx bx-user-circle"
+                <a href="user" class="btn py-4 px-lg-5 d-none d-lg-block"><i class="user bx bx-user-circle"
                         style="font-size: 35px"></i></a>
             </div>
         </div>
@@ -799,14 +799,6 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    </head>
-
-    <body>
-        <a href="absen">absen</a>
-        <a href="admin">admin</a>
-    </body>
+</body>
 
 </html>
