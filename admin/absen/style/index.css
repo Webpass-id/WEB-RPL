@@ -1,0 +1,129 @@
+/* Reset basic elements for better consistency across browsers */
+body, h2, table, th, td, form, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+
+
+/* Container for the form and table */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Header styles */
+h2 {
+    margin-bottom: 20px;
+    color: #88c1d0;
+    text-align: center;
+}
+
+/* Table styles */
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #e6f2f5; /* Light gray */
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f7fa; /* Light pastel blue */
+}
+
+table img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* Form styles */
+form {
+    display: inline;
+}
+
+button {
+    padding: 8px 12px;
+    background-color: #88c1d0; /* Pastel blue */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #75a0af;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    table, table th, table td {
+        display: block;
+        width: 100%;
+    }
+
+    table th, table td {
+        padding: 8px;
+        text-align: right;
+    }
+
+    table th {
+        text-align: left;
+    }
+
+    table th::after {
+        content: ":";
+        display: inline-block;
+        margin-left: 5px;
+    }
+
+    table td {
+        text-align: left;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+    }
+}

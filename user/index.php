@@ -43,60 +43,63 @@ foreach ($days as $day) {
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>      
+<body>
     <?php include "components/nav.php"; ?>
     <div class="container">
         <div class="row mt-5">
             <div class="col-12 text-center">
                 <h1>JADWAL PELAJARAN</h1>
                 <?php foreach ($days as $day) : ?>
-                    <button type="button" class="btn btn-outline-secondary m-2" data-bs-toggle="modal" data-bs-target="#modal<?php echo $day; ?>">
-                        <?php echo $day; ?>
-                    </button>
+                <button type="button" class="btn btn-outline-secondary m-2" data-bs-toggle="modal"
+                    data-bs-target="#modal<?php echo $day; ?>">
+                    <?php echo $day; ?>
+                </button>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="modal<?php echo $day; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo $day; ?></h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>Pelajaran</th>
-                                                <th>Nama Guru</th>
-                                                <th>Jam</th>
-                                                <th>Kelas</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php if (!empty($subjects[$day])) : ?>
-                                                <?php foreach ($subjects[$day] as $row) : ?>
-                                                    <tr>
-                                                        <td><?php echo htmlspecialchars($row['nama_pelajaran']); ?></td>
-                                                        <td><?php echo htmlspecialchars($row['nama_guru']); ?></td>
-                                                        <td><?php echo htmlspecialchars($row['jam']); ?></td>
-                                                        <td><?php echo htmlspecialchars($row['tingkat']); ?></td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
-                                                <tr>
-                                                    <td colspan="4">Tidak ada data</td>
-                                                </tr>
-                                            <?php endif; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="modal<?php echo $day; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo $day; ?></h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Pelajaran</th>
+                                            <th>Nama Guru</th>
+                                            <th>Jam</th>
+                                            <th>Kelas</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (!empty($subjects[$day])) : ?>
+                                        <?php foreach ($subjects[$day] as $row) : ?>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($row['nama_pelajaran']); ?></td>
+                                            <td><?php echo htmlspecialchars($row['nama_guru']); ?></td>
+                                            <td><?php echo htmlspecialchars($row['jam']); ?></td>
+                                            <td><?php echo htmlspecialchars($row['tingkat']); ?></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                        <?php else : ?>
+                                        <tr>
+                                            <td colspan="4">Tidak ada data</td>
+                                        </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </div>
+                </div>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -181,7 +184,56 @@ foreach ($days as $day) {
         </div>
     </div>
 
-     
+    <div class="container mt-4">
+        <div class="row text-center">
+            <div class="col-12">
+                <h1>TUGAS </h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <?php
+            // Array untuk menyimpan data tugas berdasarkan hari
+            $tasksByDay = array(
+                'Senin' => array(),
+                'Selasa' => array(),
+                'Rabu' => array(),
+                'Kamis' => array(),
+                'Jumat' => array()
+            );
+
+            // Mengambil data tugas dari database dan membaginya ke dalam array berdasarkan hari
+            $stmt = $conn->query("SELECT * FROM tugas_sekolah");
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $tasksByDay[$row['hari']][] = $row;
+            }
+
+            // Menampilkan tabel untuk setiap hari dengan daftar tugasnya
+            foreach ($tasksByDay as $day => $tasks) {
+                echo "<div class='col-lg-3 col-md-4 col-sm-6 mb-4'>";
+                echo "<h4 class='mb-3'>$day</h4>";
+                echo "<table class='table table-bordered table-striped task-table'>";
+                echo "<thead class='thead-dark'>";
+                echo "<tr>";
+                echo "<th scope='col'>Tugas</th>";
+                echo "<th scope='col'>Guru</th>";
+                echo "<th scope='col'>Tenggat</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "<tbody>";
+                foreach ($tasks as $task) {
+                    echo "<tr>";
+                    echo "<td class='task-name'>" . htmlspecialchars($task['tugas'], ENT_QUOTES, 'UTF-8') . "</td>";
+                    echo "<td class='teacher'>" . htmlspecialchars($task['guru'], ENT_QUOTES, 'UTF-8') . "</td>";
+                    echo "<td class='deadline'>" . htmlspecialchars($task['tenggat'], ENT_QUOTES, 'UTF-8') . "</td>";
+                    echo "</tr>";
+                }
+                echo "</tbody>";
+                echo "</table>";
+                echo "</div>";
+            }
+            ?>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
