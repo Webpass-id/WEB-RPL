@@ -1,10 +1,8 @@
 <?php
-session_start(); // Start the session if not already started
+session_start();
 
-// Include the database connection file
 include "../../conn.php";
 
-// Function to sanitize input data
 function sanitize_input($data)
 {
     $data = trim($data);
@@ -13,40 +11,37 @@ function sanitize_input($data)
     return $data;
 }
 
-// Check if user is logged in
+function get_ip_address()
+{
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        return $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        return $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+        return $_SERVER['REMOTE_ADDR'];
+    }
+}
+
 if (!isset($_SESSION["user"])) {
-    // Redirect user to the login page if not logged in
     header("Location: login.php");
     exit();
 }
 
-// Absen Process
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     $nama = sanitize_input($_POST["nama"]);
     $keterangan = sanitize_input($_POST["keterangan"]);
-
-    // Set tanggal otomatis
     $tanggal = date('Y-m-d');
-
-    // Set waktu otomatis
     $jam_masuk = date('H:i:s');
-
-    // Proses upload foto
+    $ip_address = get_ip_address();
     $target_dir = "../../admin/uploads/";
     $target_file = $target_dir . basename($_FILES["foto"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // Check if file was uploaded successfully
     if (!empty($_FILES["foto"]["tmp_name"])) {
-        // Check if image file is an actual image or fake image
         $check = getimagesize($_FILES["foto"]["tmp_name"]);
         if ($check !== false) {
-            // Allow only specific image file formats
-            if (
-                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                && $imageFileType != "gif"
-            ) {
+            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
                 echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                 $uploadOk = 0;
             }
@@ -55,16 +50,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
             $uploadOk = 0;
         }
 
-        // Check file size
         if ($_FILES["foto"]["size"] > 500000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }
 
-        // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
             echo "Sorry, your file was not uploaded.";
-            // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
                 echo "The file " . htmlspecialchars(basename($_FILES["foto"]["name"])) . " has been uploaded.";
@@ -76,11 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         echo "No file uploaded.";
     }
 
-    // Insert absen data into the database
     try {
-        $username = $_SESSION["user"]; // Get the username from the session
-        
-        // Get nisn from the user table based on the username
+        $username = $_SESSION["user"];
         $stmt = $conn->prepare("SELECT nisn FROM user WHERE Username = :username");
         $stmt->bindParam(':username', $username);
         $stmt->execute();
@@ -89,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         if ($result) {
             $nisn = $result['nisn'];
 
-            $stmt = $conn->prepare("INSERT INTO absen (Nama, Tanggal, JamMasuk, Keterangan, Foto, Username, nisn) VALUES (:nama, :tanggal, :jam_masuk, :keterangan, :foto, :username, :nisn)");
+            $stmt = $conn->prepare("INSERT INTO absen (Nama, Tanggal, JamMasuk, Keterangan, Foto, Username, nisn, ip_address) VALUES (:nama, :tanggal, :jam_masuk, :keterangan, :foto, :username, :nisn, :ip_address)");
             $stmt->bindParam(':nama', $nama);
             $stmt->bindParam(':tanggal', $tanggal);
             $stmt->bindParam(':jam_masuk', $jam_masuk);
@@ -97,6 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
             $stmt->bindParam(':foto', $target_file);
             $stmt->bindParam(':username', $username);
             $stmt->bindParam(':nisn', $nisn);
+            $stmt->bindParam(':ip_address', $ip_address);
             $stmt->execute();
 
             echo "<script>alert('Absen berhasil!');</script>";
@@ -116,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Absen</title>
-    <link rel ="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -139,11 +129,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     <script>
     document.getElementById("absenForm").addEventListener("submit", function(event) {
         var fileInput = document.getElementById("foto");
-        // Check if a file is selected
         if (fileInput.files.length === 0) {
-            // Prevent form submission
             event.preventDefault();
-            // Inform the user that they need to select a file
             alert("Please select a file.");
         }
     });
