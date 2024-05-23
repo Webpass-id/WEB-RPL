@@ -2,13 +2,13 @@
   <div id="carouselExampleFade" class="carousel slide carousel-fade mb-5 mt-3"  >
       <div class="carousel-inner">
           <div class="carousel-item active" >
-              <img src="../assets/img/carousel/1.png" class="d-block w-100" style="border-radius: 25px !important;" alt="..." />
+              <img src="./assets/image/piket/PIKET-TES .png" class="d-block w-100" style="border-radius: 25px !important;" alt="..." />
           </div>
           <div class="carousel-item">
-              <img src="../assets/img/carousel/1.png" class="d-block w-100" style="border-radius: 25px !important;" alt="..." />
+              <img src="./assets/image/piket/PIKET-TES .png" class="d-block w-100" style="border-radius: 25px !important;" alt="..." />
           </div>
           <div class="carousel-item">
-              <img src="../assets/img/carousel/1.png" class="d-block w-100" style="border-radius: 25px !important;" alt="..." />
+              <img src="./assets/image/piket/PIKET-TES .png" class="d-block w-100" style="border-radius: 25px !important;" alt="..." />
           </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -21,3 +21,4 @@
       </button>
   </div>
   <!-- Carousel End -->
+  
