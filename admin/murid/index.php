@@ -11,6 +11,11 @@ try {
 } catch (PDOException $e) {
     $error = "Error: " . $e->getMessage();
 }
+session_start();
+if (!isset($_SESSION["admin"])) {
+    header("Location: login.php"); // Redirect to login page if not logged in
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -20,7 +20,10 @@
                     <a class="nav-link" href="/admin/mapel">Mapel</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/tugas-sekolah/">Mapel</a>
+                    <a class="nav-link" href="/admin/tugas-sekolah/">Tugas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/logout.php">Logout</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">
