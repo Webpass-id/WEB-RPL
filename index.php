@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+<<<<<<< HEAD
     <meta charset="utf-8" />
     <title>RPL - SMK PKP 1 JIS</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -799,6 +800,16 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+=======
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="absen">absen</a>
+    <a href="admin">admin</a>
+>>>>>>> 4bc0a2fbf3b3fc9b607389d0c57cf1e1bf7658a2
 </body>
 
 </html>

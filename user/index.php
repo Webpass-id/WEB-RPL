@@ -43,13 +43,18 @@ foreach ($days as $day) {
     <link rel="stylesheet" href="style.css">
 </head>
 
+<<<<<<< HEAD
 <body>
+=======
+<body>      
+>>>>>>> 4bc0a2fbf3b3fc9b607389d0c57cf1e1bf7658a2
     <?php include "components/nav.php"; ?>
     <div class="container">
         <div class="row mt-5">
             <div class="col-12 text-center">
                 <h1>JADWAL PELAJARAN</h1>
                 <?php foreach ($days as $day) : ?>
+<<<<<<< HEAD
                 <button type="button" class="btn btn-outline-secondary m-2" data-bs-toggle="modal"
                     data-bs-target="#modal<?php echo $day; ?>">
                     <?php echo $day; ?>
@@ -100,6 +105,55 @@ foreach ($days as $day) {
                         </div>
                     </div>
                 </div>
+=======
+                    <button type="button" class="btn btn-outline-secondary m-2" data-bs-toggle="modal" data-bs-target="#modal<?php echo $day; ?>">
+                        <?php echo $day; ?>
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal<?php echo $day; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo $day; ?></h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Pelajaran</th>
+                                                <th>Nama Guru</th>
+                                                <th>Jam</th>
+                                                <th>Kelas</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php if (!empty($subjects[$day])) : ?>
+                                                <?php foreach ($subjects[$day] as $row) : ?>
+                                                    <tr>
+                                                        <td><?php echo htmlspecialchars($row['nama_pelajaran']); ?></td>
+                                                        <td><?php echo htmlspecialchars($row['nama_guru']); ?></td>
+                                                        <td><?php echo htmlspecialchars($row['jam']); ?></td>
+                                                        <td><?php echo htmlspecialchars($row['tingkat']); ?></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            <?php else : ?>
+                                                <tr>
+                                                    <td colspan="4">Tidak ada data</td>
+                                                </tr>
+                                            <?php endif; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+>>>>>>> 4bc0a2fbf3b3fc9b607389d0c57cf1e1bf7658a2
                 <?php endforeach; ?>
             </div>
         </div>
@@ -184,6 +238,7 @@ foreach ($days as $day) {
         </div>
     </div>
 
+<<<<<<< HEAD
     <div class="container mt-4">
         <div class="row text-center">
             <div class="col-12">
@@ -234,8 +289,15 @@ foreach ($days as $day) {
             ?>
         </div>
     </div>
+=======
+     
+>>>>>>> 4bc0a2fbf3b3fc9b607389d0c57cf1e1bf7658a2
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 4bc0a2fbf3b3fc9b607389d0c57cf1e1bf7658a2

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     background: linear-gradient(to right, #032c55, #bdc3c7);
     display: flex;
@@ -16,3 +17,23 @@ body {
 .form-control {
     margin-bottom: 10px;
 }
+=======
+body {
+    background: linear-gradient(to right, #032c55, #bdc3c7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+>>>>>>> 4bc0a2fbf3b3fc9b607389d0c57cf1e1bf7658a2
