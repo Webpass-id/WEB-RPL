@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> 4bc0a2fbf3b3fc9b607389d0c57cf1e1bf7658a2
 <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color:rgb(103, 131, 159) !important;">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Hi, <?php echo htmlspecialchars($_SESSION['user']); ?> !</a>
@@ -12,12 +9,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-<<<<<<< HEAD
-                    <a class="nav-link active" aria-current="page" href="/user">HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user/absen">ABSEN</a>
-=======
                     <a class="nav-link active" aria-current="page" href="user">HOME</a>
                 </li>
                 <li class="nav-item">
@@ -25,16 +16,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="mapel">MATA PELAJARAN</a>
->>>>>>> 4bc0a2fbf3b3fc9b607389d0c57cf1e1bf7658a2
                 </li>
             </ul>
         </div>
     </div>
-<<<<<<< HEAD
-</nav>
-=======
 </nav>
 
 
 
->>>>>>> 4bc0a2fbf3b3fc9b607389d0c57cf1e1bf7658a2

@@ -107,87 +107,70 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Mata Pelajaran</title>
-    <link rel="stylesheet" href="style/index.css">
 </head>
 
 <body>
+    <h2>CRUD Mata Pelajaran</h2>
 
+    <!-- Formulir untuk menambah atau mengedit mata pelajaran -->
+    <h3>Tambah/Edit Mata Pelajaran</h3>
+    <form action="" method="POST">
+        Nama Pelajaran: <input type="text" name="nama_pelajaran"
+            value="<?php echo isset($nama_pelajaran) ? htmlspecialchars($nama_pelajaran) : ''; ?>"><br>
+        Nama Guru: <input type="text" name="nama_guru"
+            value="<?php echo isset($nama_guru) ? htmlspecialchars($nama_guru) : ''; ?>"><br>
+        Jam: <input type="number" name="jam" value="<?php echo isset($jam) ? htmlspecialchars($jam) : ''; ?>"><br>
+        Tingkat: <input type="text" name="tingkat"
+            value="<?php echo isset($tingkat) ? htmlspecialchars($tingkat) : ''; ?>"><br>
+        Deskripsi: <textarea
+            name="deskripsi"><?php echo isset($deskripsi) ? htmlspecialchars($deskripsi) : ''; ?></textarea><br>
+        Hari:
+        <select name="hari">
+            <option value="Senin" <?php echo (isset($hari) && $hari == 'Senin') ? 'selected' : ''; ?>>Senin</option>
+            <option value="Selasa" <?php echo (isset($hari) && $hari == 'Selasa') ? 'selected' : ''; ?>>Selasa</option>
+            <option value="Rabu" <?php echo (isset($hari) && $hari == 'Rabu') ? 'selected' : ''; ?>>Rabu</option>
+            <option value="Kamis" <?php echo (isset($hari) && $hari == 'Kamis') ? 'selected' : ''; ?>>Kamis</option>
+            <option value="Jumat" <?php echo (isset($hari) && $hari == 'Jumat') ? 'selected' : ''; ?>>Jumat</option>
+        </select><br>
+        <input type="hidden" name="id_pelajaran"
+            value="<?php echo isset($id_pelajaran) ? htmlspecialchars($id_pelajaran) : ''; ?>">
+        <input type="submit" name="submit" value="Simpan">
+    </form>
 
-    <div class="container">
-        <h2>CRUD Mata Pelajaran</h2>
+    <hr>
 
-        <!-- Formulir untuk menambah atau mengedit mata pelajaran -->
-        <h3>Tambah/Edit Mata Pelajaran</h3>
-        <form action="" method="POST">
-            <label for="nama_pelajaran">Nama Pelajaran:</label>
-            <input type="text" id="nama_pelajaran" name="nama_pelajaran"
-                value="<?php echo isset($nama_pelajaran) ? htmlspecialchars($nama_pelajaran) : ''; ?>">
-
-            <label for="nama_guru">Nama Guru:</label>
-            <input type="text" id="nama_guru" name="nama_guru"
-                value="<?php echo isset($nama_guru) ? htmlspecialchars($nama_guru) : ''; ?>">
-
-            <label for="jam">Jam:</label>
-            <input type="number" id="jam" name="jam" value="<?php echo isset($jam) ? htmlspecialchars($jam) : ''; ?>">
-
-            <label for="tingkat">Tingkat:</label>
-            <input type="text" id="tingkat" name="tingkat"
-                value="<?php echo isset($tingkat) ? htmlspecialchars($tingkat) : ''; ?>">
-
-            <label for="deskripsi">Deskripsi:</label>
-            <textarea id="deskripsi"
-                name="deskripsi"><?php echo isset($deskripsi) ? htmlspecialchars($deskripsi) : ''; ?></textarea>
-
-            <label for="hari">Hari:</label>
-            <select id="hari" name="hari">
-                <option value="Senin" <?php echo (isset($hari) && $hari == 'Senin') ? 'selected' : ''; ?>>Senin</option>
-                <option value="Selasa" <?php echo (isset($hari) && $hari == 'Selasa') ? 'selected' : ''; ?>>Selasa
-                </option>
-                <option value="Rabu" <?php echo (isset($hari) && $hari == 'Rabu') ? 'selected' : ''; ?>>Rabu</option>
-                <option value="Kamis" <?php echo (isset($hari) && $hari == 'Kamis') ? 'selected' : ''; ?>>Kamis</option>
-                <option value="Jumat" <?php echo (isset($hari) && $hari == 'Jumat') ? 'selected' : ''; ?>>Jumat</option>
-            </select>
-
-            <input type="hidden" name="id_pelajaran"
-                value="<?php echo isset($id_pelajaran) ? htmlspecialchars($id_pelajaran) : ''; ?>">
-            <input type="submit" name="submit" value="Simpan">
-        </form>
-
-        <hr>
-
-        <!-- Daftar Mata Pelajaran -->
-        <h3>Daftar Mata Pelajaran</h3>
-        <table>
-            <tr>
-                <th>ID Pelajaran</th>
-                <th>Nama Pelajaran</th>
-                <th>Nama Guru</th>
-                <th>Jam</th>
-                <th>Tingkat</th>
-                <th>Deskripsi</th>
-                <th>Hari</th>
-                <th>Aksi</th>
-            </tr>
-            <?php
-            if ($result->rowCount() > 0) {
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<tr>";
-                    echo "<td data-label='ID Pelajaran'>" . htmlspecialchars($row["id_pelajaran"]) . "</td>";
-                    echo "<td data-label='Nama Pelajaran'>" . htmlspecialchars($row["nama_pelajaran"]) . "</td>";
-                    echo "<td data-label='Nama Guru'>" . htmlspecialchars($row["nama_guru"]) . "</td>";
-                    echo "<td data-label='Jam'>" . htmlspecialchars($row["jam"]) . "</td>";
-                    echo "<td data-label='Tingkat'>" . htmlspecialchars($row["tingkat"]) . "</td>";
-                    echo "<td data-label='Deskripsi'>" . htmlspecialchars($row["deskripsi"]) . "</td>";
-                    echo "<td data-label='Hari'>" . htmlspecialchars($row["hari"]) . "</td>";
-                    echo "<td data-label='Aksi'><a href='index.php?id=" . $row["id_pelajaran"] . "'>Edit</a> | <a href='delete.php?id=" . $row["id_pelajaran"] . "'>Hapus</a></td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='8'>Tidak ada data mata pelajaran</td></tr>";
+    <!-- Daftar Mata Pelajaran -->
+    <h3>Daftar Mata Pelajaran</h3>
+    <table border="1">
+        <tr>
+            <th>ID Pelajaran</th>
+            <th>Nama Pelajaran</th>
+            <th>Nama Guru</th>
+            <th>Jam</th>
+            <th>Tingkat</th>
+            <th>Deskripsi</th>
+            <th>Hari</th>
+            <th>Aksi</th>
+        </tr>
+        <?php
+        if ($result->rowCount() > 0) {
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row["id_pelajaran"]) . "</td>";
+                echo "<td>" . htmlspecialchars($row["nama_pelajaran"]) . "</td>";
+                echo "<td>" . htmlspecialchars($row["nama_guru"]) . "</td>";
+                echo "<td>" . htmlspecialchars($row["jam"]) . "</td>";
+                echo "<td>" . htmlspecialchars($row["tingkat"]) . "</td>";
+                echo "<td>" . htmlspecialchars($row["deskripsi"]) . "</td>";
+                echo "<td>" . htmlspecialchars($row["hari"]) . "</td>";
+                echo "<td><a href='index.php?id=" . $row["id_pelajaran"] . "'>Edit</a> | <a href='delete.php?id=" . $row["id_pelajaran"] . "'>Hapus</a></td>";
+                echo "</tr>";
             }
-            ?>
-        </table>
-    </div>
+        } else {
+            echo "<tr><td colspan='8'>Tidak ada data mata pelajaran</td></tr>";
+        }
+        ?>
+    </table>
 </body>
 
 </html>
