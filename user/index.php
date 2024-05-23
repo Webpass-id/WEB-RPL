@@ -43,63 +43,60 @@ foreach ($days as $day) {
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body>      
     <?php include "components/nav.php"; ?>
     <div class="container">
         <div class="row mt-5">
             <div class="col-12 text-center">
                 <h1>JADWAL PELAJARAN</h1>
                 <?php foreach ($days as $day) : ?>
-                <button type="button" class="btn btn-outline-secondary m-2" data-bs-toggle="modal"
-                    data-bs-target="#modal<?php echo $day; ?>">
-                    <?php echo $day; ?>
-                </button>
+                    <button type="button" class="btn btn-outline-secondary m-2" data-bs-toggle="modal" data-bs-target="#modal<?php echo $day; ?>">
+                        <?php echo $day; ?>
+                    </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="modal<?php echo $day; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo $day; ?></h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Pelajaran</th>
-                                            <th>Nama Guru</th>
-                                            <th>Jam</th>
-                                            <th>Kelas</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if (!empty($subjects[$day])) : ?>
-                                        <?php foreach ($subjects[$day] as $row) : ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($row['nama_pelajaran']); ?></td>
-                                            <td><?php echo htmlspecialchars($row['nama_guru']); ?></td>
-                                            <td><?php echo htmlspecialchars($row['jam']); ?></td>
-                                            <td><?php echo htmlspecialchars($row['tingkat']); ?></td>
-                                        </tr>
-                                        <?php endforeach; ?>
-                                        <?php else : ?>
-                                        <tr>
-                                            <td colspan="4">Tidak ada data</td>
-                                        </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal<?php echo $day; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo $day; ?></h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Pelajaran</th>
+                                                <th>Nama Guru</th>
+                                                <th>Jam</th>
+                                                <th>Kelas</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php if (!empty($subjects[$day])) : ?>
+                                                <?php foreach ($subjects[$day] as $row) : ?>
+                                                    <tr>
+                                                        <td><?php echo htmlspecialchars($row['nama_pelajaran']); ?></td>
+                                                        <td><?php echo htmlspecialchars($row['nama_guru']); ?></td>
+                                                        <td><?php echo htmlspecialchars($row['jam']); ?></td>
+                                                        <td><?php echo htmlspecialchars($row['tingkat']); ?></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            <?php else : ?>
+                                                <tr>
+                                                    <td colspan="4">Tidak ada data</td>
+                                                </tr>
+                                            <?php endif; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -114,83 +111,84 @@ foreach ($days as $day) {
         </div>
     </div>
 
-    <div class="container mt-4">
+    <div class="container mt-4 mb-5">
         <div class="row text-center">
-            <div class="col-12">
+            <div class="col-12 mb-3">
                 <h1>CALENDER</h1>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="card calendar-card">
-                    <img src="./assets/image/calender/JANUARI.jpg">
+                    <img src="./assets/image/kalender/jan.png">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="card calendar-card">
-                    <img src="./assets/image/calender/JANUARI.jpg" class="card-img-top" alt="February Calendar">
+                    <img src="./assets/image/kalender/feb.png" class="card-img-top" alt="February Calendar">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="card calendar-card">
-                    <img src="./assets/image/calender/JANUARI.jpg" class="card-img-top" alt="March Calendar">
+                    <img src="./assets/image/kalender/mar.png" class="card-img-top" alt="March Calendar">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="card calendar-card">
-                    <img src="./assets/image/calender/JANUARI.jpg" class="card-img-top" alt="April Calendar">
+                    <img src="./assets/image/kalender/apr.png" class="card-img-top" alt="April Calendar">
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3" ">
                 <div class="card calendar-card">
-                    <img src="./assets/image/calender/JANUARI.jpg" class="card-img-top" alt="May Calendar">
+                    <img src="./assets/image/kalender/mei.png" class="card-img-top" alt="May Calendar">
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card calendar-card">
-                    <img src="./assets/image/calender/JANUARI.jpg" class="card-img-top" alt="June Calendar">
+                    <img src="./assets/image/kalender/jun.png" class="card-img-top" alt="June Calendar">
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card calendar-card">
-                    <img src="./assets/image/calender/JANUARI.jpg" class="card-img-top" alt="July Calendar">
+                    <img src="./assets/image/kalender/jul.png" class="card-img-top" alt="July Calendar">
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card calendar-card">
-                    <img src="./assets/image/calender/JANUARI.jpg" class="card-img-top" alt="August Calendar">
+                    <img src="./assets/image/kalender/agu.png" class="card-img-top" alt="August Calendar">
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card calendar-card">
-                    <img src="./assets/image/calender/JANUARI.jpg" class="card-img-top" alt="September Calendar">
+                    <img src="./assets/image/kalender/sep.png" class="card-img-top" alt="September Calendar">
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card calendar-card">
-                    <img src="./assets/image/calender/JANUARI.jpg" class="card-img-top" alt="October Calendar">
+                    <img src="./assets/image/kalender/okt.png" class="card-img-top" alt="October Calendar">
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card calendar-card">
-                    <img src="./assets/image/calender/JANUARI.jpg" class="card-img-top" alt="November Calendar">
+                    <img src="./assets/image/kalender/nov.png" class="card-img-top" alt="November Calendar">
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card calendar-card">
-                    <img src="./assets/image/calender/JANUARI.jpg" class="card-img-top" alt="December Calendar">
+                    <img src="./assets/image/kalender/des.png" class="card-img-top" alt="December Calendar">
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container mt-4">
+    <div class="container mt-5" ">
         <div class="row text-center">
             <div class="col-12">
                 <h1>TUGAS </h1>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class=" row justify-content-center" 
+        style="margin-top: 50px;">
             <?php
             // Array untuk menyimpan data tugas berdasarkan hari
             $tasksByDay = array(
