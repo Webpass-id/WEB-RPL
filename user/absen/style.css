@@ -1,0 +1,72 @@
+/* Style for body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background:linear-gradient(to top, #032c55, #032c55) !important;
+}
+
+/* Style for container */
+.container {
+    width: 80% !important;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.container h2{
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Style for form */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for form labels */
+form label {
+    font-weight: bold;
+}
+
+/* Style for form inputs */
+form input[type="text"],
+form input[type="file"] {
+    width: calc(100% - 12px);
+    padding: 8px;
+    margin: 6px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for submit button */
+form input[type="submit"] {
+    background-color: #e1e1e1;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Style for submit button on hover */
+form input[type="submit"]:hover {
+    background-color: #2d0bf0e4;
+    color: #ffffff;
+}
+
+/* Style for error message */
+.error {
+    color: #f00;
+    margin-top: 5px;
+}
+
+/* Style for success message */
+.success {
+    color: #008000;
+    margin-top: 5px;
+}
+
+
