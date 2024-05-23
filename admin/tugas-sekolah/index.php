@@ -1,52 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php 
-
 require "../../boots.php";
 session_start();
 if (!isset($_SESSION["admin"])) {
     header("Location: ../login.php"); // Redirect to login page if not logged in
     exit();
 }
-
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Task</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Create New Subject</title>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
-    <?php 
-    include "../components/nav.php";
-    ?>
+    <?php include "../components/nav.php"; ?>
     <div class="container">
-        <h2>Create New Task</h2>
+        <h2>Create New Subject</h2>
         <form action="update.php" method="post">
-            <label for="tanggal">Tanggal:</label><br>
-            <input type="date" id="tanggal" name="tanggal" required><br><br>
+            <label for="subject_name">Subject Name:</label>
+            <input type="text" id="subject_name" name="subject_name" required>
 
-            <label for="hari">Hari:</label><br>
-            <select id="hari" name="hari" required>
-                <option value="Senin">Senin</option>
-                <option value="Selasa">Selasa</option>
-                <option value="Rabu">Rabu</option>
-                <option value="Kamis">Kamis</option>
-                <option value="Jumat">Jumat</option>
-            </select><br><br>
+            <label for="teacher_name">Teacher Name:</label>
+            <input type="text" id="teacher_name" name="teacher_name" required>
 
-            <label for="tugas">Nama Tugas:</label><br>
-            <input type="text" id="tugas" name="tugas" required><br><br>
+            <label for="class_level">Class Level:</label>
+            <select id="class_level" name="class_level" required>
+                <option value="Primary">Primary</option>
+                <option value="Secondary">Secondary</option>
+                <option value="High School">High School</option>
+            </select>
 
-            <label for="guru">Guru:</label><br>
-            <input type="text" id="guru" name="guru" required><br><br>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
 
-            <label for="tenggat">Tenggat:</label><br>
-            <input type="date" id="tenggat" name="tenggat" required><br><br>
-
-            <input type="submit" value="Create Task">
+            <input type="submit" value="Create Subject">
         </form>
     </div>
 </body>

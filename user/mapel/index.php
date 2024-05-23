@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+               session_start();
+if (!isset($_SESSION["user"])) {
+    // Redirect user to the login page if not logged in
+    header("Location: ../login.php");
+    exit();
+}
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -28,7 +36,7 @@
                 <?php
                 include "../../boots.php";
                 include "../../conn.php";
-
+ 
                 try {
                     // Buat koneksi menggunakan PDO
                     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

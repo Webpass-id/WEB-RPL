@@ -16,7 +16,7 @@ function sanitize_input($data)
 // Check if user is logged in
 if (!isset($_SESSION["user"])) {
     // Redirect user to the login page if not logged in
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
 

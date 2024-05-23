@@ -11,20 +11,17 @@ body {
     background-color: #f9f9f9;
     color: #333;
     line-height: 1.6;
-    padding: 20px;
 }
-
-
 
 /* Container for the form and table */
 .container {
     width: 90%;
     max-width: 1200px;
     background-color: #ffffff;
-    padding: 20px;
-    margin: 20px auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
 }
 
 /* Header styles */
@@ -89,41 +86,3 @@ button:hover {
 }
 
 /* Responsive design */
-@media (max-width: 600px) {
-    .container {
-        padding: 15px;
-    }
-
-    table, table th, table td {
-        display: block;
-        width: 100%;
-    }
-
-    table th, table td {
-        padding: 8px;
-        text-align: right;
-    }
-
-    table th {
-        text-align: left;
-    }
-
-    table th::after {
-        content: ":";
-        display: inline-block;
-        margin-left: 5px;
-    }
-
-    table td {
-        text-align: left;
-        padding-left: 50%;
-        position: relative;
-    }
-
-    table td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 10px;
-        font-weight: bold;
-    }
-}
