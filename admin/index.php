@@ -117,10 +117,10 @@ include "../boots.php";
                                 </td>
                                 <td data-label="Username"><?php echo htmlspecialchars($row["Username"]); ?></td>
                                 <td data-label="Action">
-                                    <form method="post">
-                                        <input type="hidden" name="delete_id" value="<?php echo htmlspecialchars($row['ID']); ?>">
-                                        <button type="submit">Delete</button>
-                                    </form>
+
+
+                                    <a href="absen/"> <button type="">View</button></a>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>
