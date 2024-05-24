@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ));
 
         if ($stmt->rowCount() > 0) {
-            echo "Tugas berhasil dibuat.";
+            header('location: ../index.php');
         } else {
             echo "Gagal membuat tugas. Silakan periksa kembali data yang Anda masukkan.";
         }

@@ -21,12 +21,12 @@ input[type="submit"] {
 }
 
 input[type="submit"] {
-    background-color: #4CAF50;
-    color: #88c1d0;
+    background-color: #88c1d0;
+    color: #ffffff;
     border: none;
     cursor: pointer;
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #88c1d0;
 }
