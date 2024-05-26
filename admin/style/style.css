@@ -1,0 +1,143 @@
+/* General styles for the container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styles for headings */
+h1, h2, h3 {
+    text-align: center;
+    color: #333;
+}
+
+/* Styles for tables */
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #88c1d0;
+    color: white;
+}
+
+/* Styles for images */
+img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* Button styles */
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-color: #88c1d0;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #75a5b5;
+}
+
+/* Form styles */
+form {
+    display: inline-block;
+}
+
+.alert {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .table-responsive {
+        margin-bottom: 10px;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 8px 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+    button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Additional styles for data-label in table cells */
+td[data-label]:before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    td[data-label] {
+        display: block;
+    }
+
+    td[data-label]:before {
+        display: block;
+    }
+
+    td {
+        padding-left: 50%;
+        position: relative;
+    }
+
+    td:before {
+        position: absolute;
+        left: 10px;
+        top: 6px;
+    }
+}
+
+/* Boxicons styles */
+.bx {
+    font-size: 20px;
+    color: white;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.bx:hover {
+    color: #ddd;
+}

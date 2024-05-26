@@ -1,0 +1,31 @@
+body {
+    background: linear-gradient(to right, #032c55, #bdc3c7);
+}
+
+.container {
+    max-width: 500px;
+    margin-top: 50px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #555;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+
+.alert {
+    border-radius: 5px;
+}
